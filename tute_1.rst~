@@ -28,6 +28,7 @@ Linguistics, Monash University, in 2008, and the data has been absorbed
 into `the Austlit Database under the name "Windows on Australia" <http://www.austlit.edu.au/specialistDatasets/WindowsOnAustralia`_.
 
 
+
 Preamble
 ========
 
@@ -38,9 +39,9 @@ We also have a virtual environment set up, to compartmentalize our python
 libraries from the main operating system libraries. 
 
 In the virtualenv we have installed Django and the python connector for 
-postgresql::
+postgresql:
 
-    pip install django psycopg2
+pip install django psycopg2
 
 We are now ready to start.
 
@@ -98,11 +99,11 @@ Framework - think like a collection of scaffolding parts with which you can
 build any shape building by attaching the parts appropriately and haning 
 stuff off them. 
 
-Theory: Database -> Web Framework -> User Interface/CSS
-Practice: PostgreSQL -> Django -> Bootstrap
+Database -> Web Framework -> User Interface/CSS
+PostgreSQL -> Django -> Bootstrap
 
 Mostly we will be learning Django and a little Bootstrap. We do not need to 
-learn SQL really, we can get Python to do that heavy lifting for us.
+learn SQL much, we can get Python to do that heavy lifting for us.
 
 Create a project
 ================
@@ -145,6 +146,7 @@ This will create a library directory, with a bunch of files in it.
   
 Once we have made a couple of small changes to these files, we wont need to
 come back very often. Most of the work happens in the apps themselves.
+
 
 
 
