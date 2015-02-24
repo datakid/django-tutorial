@@ -151,7 +151,8 @@ This will create a library directory, with a bunch of files in it.
 Once we have made a couple of small changes to these files, we wont need to
 come back very often. Most of the work happens in the apps themselves.
 
-We edit library/library/settings.py focusing on these fields::
+We edit library/library/settings.py focusing on these fields, using the details
+that were set up earlier:::
 
     DATABASES = {
         'default': {
