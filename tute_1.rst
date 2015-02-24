@@ -25,7 +25,7 @@ spreadsheet.
 Full disclosure: this is a newer version of a system that I actually 
 implemented for Translation and Interpreting Studies, School of Languages, 
 Literatures, Cultures & Linguistics, Monash University, in 2008, and the 
-data has been absorbed into `the Austlit Database under the name "Windows on Australia" <http://www.austlit.edu.au/specialistDatasets/WindowsOnAustralia`_.
+data has been absorbed into `the Austlit Database under the name "Windows on Australia" <http://www.austlit.edu.au/specialistDatasets/WindowsOnAustralia>`_.
 
 
 Preamble
