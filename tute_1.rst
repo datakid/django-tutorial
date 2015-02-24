@@ -22,10 +22,10 @@ In this class we hope to show the distinct advantages that a database
 backed small web app has over the relatively simple collaborative
 spreadsheet.
 
-* This was a system that I actually implemented for Translation and 
-Interpreting Studies, School of Languages, Literatures, Cultures & 
-Linguistics, Monash University, in 2008, and the data has been absorbed 
-into `the Austlit Database under the name "Windows on Australia" <http://www.austlit.edu.au/specialistDatasets/WindowsOnAustralia`_.
+Full disclosure: this is a newer version of a system that I actually 
+implemented for Translation and Interpreting Studies, School of Languages, 
+Literatures, Cultures & Linguistics, Monash University, in 2008, and the 
+data has been absorbed into `the Austlit Database under the name "Windows on Australia" <http://www.austlit.edu.au/specialistDatasets/WindowsOnAustralia`_.
 
 
 Preamble
@@ -38,9 +38,14 @@ We also have a virtual environment set up, to compartmentalize our python
 libraries from the main operating system libraries. 
 
 In the virtualenv we have installed Django and the python connector for 
-postgresql::
+postgresql::    
 
     pip install django psycopg2
+
+We will also presume that there is a database ready within PostgreSQL called
+db, accessible by db_user using password db_password. Note that these are 
+*terribly* named examples and are used for expediency rather than good 
+practice.
 
 We are now ready to start.
 
@@ -146,9 +151,58 @@ This will create a library directory, with a bunch of files in it.
 Once we have made a couple of small changes to these files, we wont need to
 come back very often. Most of the work happens in the apps themselves.
 
+We edit library/library/settings.py focusing on these fields::
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'db',
+            'USER': 'db_user',
+            'PASSWORD': 'db_password',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
+
+Here we have set the database connection. Now we can populate the database with
+some of the default tables that Django needs to do it's job.
+::
+    $ python manage.py migrate
 
 
-  
 
 
+
+Create our first app
+====================
+
+Depending on the size and shape of our data, we may need to do a little bit of 
+pen and paper work to determine the best way to break our data down into it's 
+constituent parts. In most cases, each app should be relatively small and just 
+do one or two things. In this case, we will make our app a little bigger, 
+because it will be our only app. 
+
+At the end of this I will give an example of a more complex app and how to go 
+about mentally mapping that into applications.
+
+The brief synopsis of what we want is:
+
+ - a collection of books 
+    - some of those books will be "source texts" - Australian literature
+    - some of those books will be "target texts" - foreign language books with
+      at least a link to a "source text"
+ - a collection of writers
+    - some of those writers will be "source text" Authors. They may have one or
+      more "source texts"
+    - some of those writers will be Translators. We will presume they have a 
+      single language other than English. They may have one or more "target 
+      texts". 
+
+In various ways we will want to cross reference and group these texts in a way
+that makes investigating the data relatively simple. 
+
+Our app will be based on this simple model, and we will grow it as we see room
+for improvement.
+
+::
 
