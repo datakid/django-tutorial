@@ -413,7 +413,7 @@ And you can see that we have acknowledged that some texts have more than one
 Author by making it a ManyToManyField. This means "any one Book can have one 
 or Many Authors; and any Author may be linked to one or many Books". There 
 is no particular reason to attach authors to books, rather than books to 
-authors except it seems more intuitively correct. There is sno absolute 
+authors except it seems more intuitively correct. There is no absolute 
 correct though, and the changes needed would be minor to flip it.
 
 
@@ -465,3 +465,6 @@ access those books by calling the target_text.source field.
 TODO - Lachlan, check that the last sentence is true and makes sense.
 
 
+
+POtential: Use this for search:
+https://github.com/etianen/django-watson/blob/master/README.markdown
