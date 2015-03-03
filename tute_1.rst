@@ -27,6 +27,55 @@ implemented for Translation and Interpreting Studies, School of Languages,
 Literatures, Cultures & Linguistics, Monash University, in 2008, and the 
 data has been absorbed into `the Austlit Database under the name "Windows on Australia" <http://www.austlit.edu.au/specialistDatasets/WindowsOnAustralia>`_.
 
+----------------------------------------
+Notes on Databases and their terminology
+----------------------------------------
+
+Before the Structured Query Language, or SQL, was developed, databases were a 
+shambles. There was no standardisation, no common idea. Everyone knew databases
+were a great idea, but no one had had that breakthrough moment yet. SQL was the
+breakthrough moment, where databases - and computing - went from a good idea
+to a game changer.
+
+SQL is a standard way to structure a database.
+
+There are many database products - also known as engines, backends, database 
+engines, or database backends, you would have heard of some - MySQL, MariaDB,
+SQLite, PostgreSQL, MSSQL, Oracle, even MS Access - the list is long. 
+
+Being such a game changer, it is easy to see why people would want to learn SQL.
+The problem with teaching SQL is that while it makes for a great backend, is 
+relatively simple and clear to convey, it isn't powerful enough on it's own, 
+and doesn't show it's best side easily. 
+
+Putting a front end on an database is the easiest way to show it's true power. 
+
+This is one of the hardest concepts in databases to understand. This tutorial
+will be teaching you Django. Django makes it easy to build a front end. You 
+can use almost any of the backends listed above with Django. You only need
+a database within the installed engine, a user and a password. That's the last
+interaction you will have with the software that is called the "database 
+backend" - which is the *actual* database software.
+
+Fundamentally, this is a problem of language. It is much easier to just call
+the whole product a database, even if the actual database product is MySQL 
+and the user interface is written in Django.
+
+You could just as easily use Ruby on Rails to build a front end. Wordpress,
+Moodle and Drupal are front ends. All are backed by a database software, and
+all only require you know the name of the database, the user and the password.
+
+Some, like MS Access, have a front end built in (shudder). Others, like MySQL
+and PostgreSQL have a generic software called phpMyAdmin and phpPgAdmin. 
+
+Between Django, phpPgAdmin and the command line, we have three different 
+"windows" into the same database. You will see that the command line is 
+the closest to the core, phpPgAdmin is the most like Excel, and Django is 
+the most powerful for building applications that you might actually use.
+
+That is why we are teaching Django, and not SQL. You will learn some SQL on 
+the way, incidentally, but it is somewhat irrelevant. We just want to get on 
+with our research. Let us help you do that as well.
 
 Preamble
 ========
@@ -275,6 +324,14 @@ database.
 The Down and Dirty
 ==================
 
+Defining our Models
+===================
+
+When building databases, it is important to think about how we will represent 
+our data in the database - the data description or database schema. Having 
+said that, thinking about database models of your data doesn't come naturally
+to *anyone*, so trial and error is as good a way to go as any.
+
 Open models.py in an editor and we add this:
 
 ::
@@ -464,7 +521,74 @@ access those books by calling the target_text.source field.
 
 TODO - Lachlan, check that the last sentence is true and makes sense.
 
+Building the actual Database itself
+===================================
+
+So now we have a description of what our data will look like in texts/models.py 
+and our library/settings.py knows sufficient details to create the database. 
+The last thing we need to do is to "register" our texts app with the library 
+project. 
+
+Open library/settings.py, find the section titled INSTALLED_APPS and add texts
+to the bottom of it:
+
+::
+
+    INSTALLED_APPS = (
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'texts', # you should only need to add this last app
+    )
 
 
-POtential: Use this for search:
+When we created the project earlier, we told you about migrating everytime the
+data schema changed. We have changed models, so let's see what happens when we 
+migrate the new settings:
+
+:: 
+
+    (venv)library$ python manage.py makemigrations
+    Migrations for 'texts':
+      0001_initial.py:
+        - Create model Author
+        - Create model SourceText
+        - Create model TargetText
+        - Create model Translator
+        - Add field translators to targettext
+
+
+Django has done all the heavy lifting for us. Well, it has made a start.
+
+As I noted above, almost everytime you build a database you think to yourself
+"damn I wish I had done it like *this* instead of like *that*. Migrations is 
+how we manage these changes. For instance, if you decide to add a favourite
+colour to an Author, or change the max_length of a book's title, you can do so
+now because the migrations know how to handle it. 
+
+Now that we have saved our migration data, lets apply the migration:
+
+::
+
+    (venv)library$ python manage.py migrate
+
+
+If we used some software like phpPgAdmin, we would be able to see that the 
+database tables have been builtcaccording to our specification.
+
+
+
+
+Let's do that now.
+
+
+
+
+
+
+
+Potential: Use this for search:
 https://github.com/etianen/django-watson/blob/master/README.markdown

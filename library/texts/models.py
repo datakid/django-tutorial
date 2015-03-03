@@ -1,8 +1,8 @@
-    """ models.py 
-        contains the models for:
-        books, sourcetexts and translated texts
-        authors, translators
-    """
+""" models.py 
+    contains the models for:
+    books, sourcetexts and translated texts
+    authors, translators
+"""
 
 
 from django.db import models
@@ -23,7 +23,7 @@ LANGUAGE_CHOICES = (
   (u'zh-cn', u'Simplified Chinese'),
   (u'zh-tw', u'Traditional Chinese'),
   (u'en', u'English'),
-}
+)
 
 class Translator(models.Model):
     """ The translators """
@@ -37,11 +37,11 @@ class Translator(models.Model):
 
 class Book(models.Model):
     """ the abstract book model """
-    title = models.CharField(u'title'), max_length=100)
+    title = models.CharField(u'title', max_length=100)
     publisher = models.CharField(u'publisher', max_length=40)
     date = models.DateField(blank=True, null=True)
     place = models.CharField(u'place', max_length=20)
-    pages = models.CharField(u'pages', blank=True)
+    pages = models.CharField(u'pages', max_length=5, blank=True)
 
     class Meta: 
         """ Some meta data """ 
@@ -51,14 +51,14 @@ class Book(models.Model):
 
 class SourceText(Book):
    """ the source text (presumed but not necessarily english) """
-   language = models.CharField(u'language', max_length=20, choices=LANGUAGES, default=u'en')
+   language = models.CharField(u'language', max_length=20, choices=LANGUAGE_CHOICES, default=u'en')
    authors = models.ManyToManyField(Author, verbose_name=u'List of Authors')
 
 
 
 class TargetText(Book):
      """ the translated text """
-     language = models.CharField(u'language', max_length=20, choices=LANGUAGES)
+     language = models.CharField(u'language', max_length=20, choices=LANGUAGE_CHOICES)
      source_text = models.ForeignKey(SourceText, related_name=u'source',
                         verbose_name=u'Source Text')
      translators = models.ManyToManyField(Translator, verbose_name=u'List of Translators')
