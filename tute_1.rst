@@ -75,7 +75,7 @@ the most powerful for building applications that you might actually use.
 
 That is why we are teaching Django, and not SQL. You will learn some SQL on 
 the way, incidentally, but it is somewhat irrelevant. We just want to get on 
-with our research. You ust want to get on with your research. Let us help 
+with our research. You just want to get on with your research. Let us help 
 you do that.
 
 Preamble
