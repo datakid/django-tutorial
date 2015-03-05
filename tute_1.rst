@@ -75,7 +75,8 @@ the most powerful for building applications that you might actually use.
 
 That is why we are teaching Django, and not SQL. You will learn some SQL on 
 the way, incidentally, but it is somewhat irrelevant. We just want to get on 
-with our research. Let us help you do that as well.
+with our research. You ust want to get on with your research. Let us help 
+you do that.
 
 Preamble
 ========
@@ -227,8 +228,24 @@ some of the default tables that Django needs to do it's job. To do this we will 
     (venv)$ cd library
     (venv)library$ python manage.py migrate
 
-We will use this command every time we make a change to the data models.
+We will use this command every time we make a change to the data models. Let's
+check that everything has installed correctly thus far.
 
+::
+
+    (venv)$ python manage.py runserver
+    Performing system checks...
+
+    System check identified no issues (0 silenced).
+    March 04, 2015 - 22:52:05
+    Django version 1.7.4, using settings 'library.settings'
+    Starting development server at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+ 
+As you can see, we now have the Django internal testing server running, 
+and if you go to the web address http://127.0.0.1:8000/ there will be a
+msg declaring success. If not, now is the time to panic. I find setting 
+fire to things theraputic.
 
 
 --------------------
@@ -574,17 +591,49 @@ Now that we have saved our migration data, lets apply the migration:
 ::
 
     (venv)library$ python manage.py migrate
+    Operations to perform:
+      Apply all migrations: admin, texts, contenttypes, auth, sessions
+    Running migrations:
+      Applying contenttypes.0001_initial... OK
+      Applying auth.0001_initial... OK
+      Applying admin.0001_initial... OK
+      Applying sessions.0001_initial... OK
+      Applying texts.0001_initial... OK
 
 
 If we used some software like phpPgAdmin, we would be able to see that the 
-database tables have been builtcaccording to our specification.
+database tables have been built according to our specification.
+
+phpPgAdmin is handy, but we are here to write a Django app. The models are 
+defined and the database now reflects those models. Time to build a web 
+interface.
+
+Django comes with an "admin" interface out of the box, but it is also trivial
+to build a sleek interface if you prefer. First I'll show the admin interface
+and I'll look at the prettier one later in the tutorial.
+
+Data goes in
+============
+
+At the moment the database is a blank slate, it has nothing in it, only a 
+shape. As per most websites, you will need to login. Django comes with an
+authorization system out of the box, but we still need to make a user:
+
+::
+
+    $ python manage.py createsuperuser
+    Username: admin
+    Email address: a@b.com # I am a LAZY PROGRAMMER
+    Password: **********
+    Password (again): *********
+    Superuser created successfully.
 
 
+Ok. Now we can login. Let's start the engine up.
 
+::
 
-Let's do that now.
-
-
+    $ python manage.py runserver
 
 
 
