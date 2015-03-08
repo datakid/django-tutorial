@@ -91,6 +91,9 @@ msg declaring success. If not, now is the time to panic. I find setting
 fire to things theraputic.
 
 
+.. image:: imgs/runserver_orig.png
+
+
 --------------------
 Create our first app
 --------------------
