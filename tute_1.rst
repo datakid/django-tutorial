@@ -482,7 +482,10 @@ Ok. Now we can login. Let's start the engine up.
     $ python manage.py runserver
 
 
+.. image:: imgs/login_screen.png
 
+
+.. image:: imgs/first_login.png
 
 
 Potential: Use this for search:
