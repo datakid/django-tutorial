@@ -2,6 +2,9 @@
 Learning practical databases via a Django web app
 =================================================
 
+Tutorial 1
+==========
+
 Preliminary Steps
 =================
 
@@ -521,7 +524,8 @@ It should look like this
 .. image:: imgs/edited_admin_1.png
 
 
-Potential: Use this for search:
-https://github.com/etianen/django-watson/blob/master/README.markdown
+As you can see, we now have a method for entering and altering data - the "add" and "change" buttons next to each Model. We could finish this tutorial here - we now have a database with easy data entry. 
 
-
+Of course we wont, because now that we have the basics, we will show the 
+real power of building your own database application. But that will be for the
+next tutorial.
