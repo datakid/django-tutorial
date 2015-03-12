@@ -153,9 +153,7 @@ If we take a look at what was created, we can see some new files:
     ├── library
     │   ├── library
     │   │   ├── __init__.py
-    │   │   ├── __init__.pyc
     │   │   ├── settings.py
-    │   │   ├── settings.pyc
     │   │   ├── urls.py
     │   │   └── wsgi.py
     │   ├── manage.py
@@ -248,12 +246,12 @@ So we have a writer. Let's make a translator:
 ::
 
     LANGUAGE_CHOICES = (
-      (u'it', u'Italian'),
-      (u'ja', u'Japanese'),
-      (u'es', u'Spanish'),
-      (u'zh-cn', u'Simplified Chinese'),
-      (u'zh-tw', u'Traditional Chinese'),
-      (u'en', u'English'),
+      ('it', 'Italian'),
+      ('ja', 'Japanese'),
+      ('es', 'Spanish'),
+      ('zh-cn', 'Simplified Chinese'),
+      ('zh-tw', 'Traditional Chinese'),
+      ('en', 'English'),
     }
 
     class Translator(models.Model):
@@ -364,9 +362,9 @@ Book object, only SourceText objects. Let's see why:
     class TargetText(Book):
         """ the translated text """
         language = models.CharField(u'language', max_length=20, choices=LANGUAGES)
-        source_text = models.ForeignKey(SourceText, related_name=u'source',
-                        verbose_name=u'Source Text')
-        translators = models.ManyToManyField(Translator, verbose_name=u'List of Translators')
+        source_text = models.ForeignKey(SourceText, related_name='source',
+                        verbose_name='Source Text')
+        translators = models.ManyToManyField(Translator, verbose_name='List of Translators')
 
 Here we get to see the last of our real models. There's nothing surprising 
 here, but importantly you can see that we are making sure that a Translated
@@ -378,7 +376,7 @@ relationship compared to the many to many of the books/author's relationship
 described above.
 
 In the TargetText, you will see that the sourec_text link also has the option 
-"related_name=u'source'". This gives us a lot of power later - when we are
+"related_name='source'". This gives us a lot of power later - when we are
 searching for all the translated texts for a particular source text we can 
 access those books by calling the target_text.source field.
 
@@ -387,12 +385,12 @@ TODO - Lachlan, check that the last sentence is true and makes sense.
 Building the actual Database itself
 ===================================
 
-So now we have a description of what our data will look like in texts/models.py 
-and our library/settings.py knows sufficient details to create the database. 
-The last thing we need to do is to "register" our texts app with the library 
-project. 
+So now we have a description of what our data will look like in 
+*texts/models.py* and our *library/settings.py* knows sufficient details to 
+create the database. The last thing we need to do is to "register" our texts 
+app with the library project. 
 
-Open library/settings.py, find the section titled INSTALLED_APPS and add texts
+Open *library/settings.py*, find the section titled INSTALLED_APPS and add texts
 to the bottom of it:
 
 ::
@@ -494,7 +492,7 @@ to our new Books app?
 We haven't told the library project that it exists yet. So we will need to add
 a little more code.
 
-Open texts/admin.py in an editor and add lines so it looks like this:
+Open *texts/admin.py* in an editor and add lines so it looks like this:
 
 ::
 
