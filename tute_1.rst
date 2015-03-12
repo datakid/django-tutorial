@@ -489,8 +489,9 @@ Ok. Now we can login. Let's start the engine up.
 As you can see, we only have the bare bones - users and groups. What happened 
 to our new Books app? 
 
-We haven't told the library project that it exists yet. So we will need to add
-a little more code.
+We haven't told the library project that we want it to be on the admin 
+interface yet - not everything will need to have an interface. So we will need 
+to add a little more code.
 
 Open *texts/admin.py* in an editor and add lines so it looks like this:
 
