@@ -488,5 +488,41 @@ Ok. Now we can login. Let's start the engine up.
 .. image:: imgs/first_login.png
 
 
+As you can see, we only have the bare bones - users and groups. What happened 
+to our new Books app? 
+
+We haven't told the library project that it exists yet. So we will need to add
+a little more code.
+
+Open texts/admin.py in an editor and add lines so it looks like this:
+
+::
+
+    from django.contrib import admin
+
+    from texts.models import Author, Translator, SourceText, TargetText
+    # Register your models here.
+    
+    admin.site.register(Author)
+    admin.site.register(Translator)
+    admin.site.register(SourceText)
+    admin.site.register(TargetText)
+
+When you now run
+
+::
+
+    $ python manage.py runserver
+
+
+and visit http://127.0.0.1:8000/admin
+
+It should look like this
+
+.. image:: imgs/edited_admin_1.png
+
+
 Potential: Use this for search:
 https://github.com/etianen/django-watson/blob/master/README.markdown
+
+
