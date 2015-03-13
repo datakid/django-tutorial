@@ -68,6 +68,32 @@ the authors from each other to assign one. Bugger.
 
 .. image:: imgs/add_source_text_0.png
 
+Let's fix it.
+
+Crack open *texts/models.py* and find the Author class. We will add a 
+**method** to that class.
+
+::
+
+    class Author(models.Model):
+        """ The underlying model for writers """
+        first = models.CharField(u'First Name', max_length=30)
+        other = models.CharField(u'Other Names', max_length=30, blank=True)
+        last = models.CharField(u'Last Name', max_length=30)
+        dob = models.DateField(u'Date of Birth', blank=True, null=True)
+
+        def __unicode__(self):
+            return '%s %s' % (self.first, self.last)
+
+There's a lot in those two lines of code, and we will try to answer as many of
+them as possible.
+
+    * When we are programming in this fashion, we define classes of objects and we 
+    can give those classes, and their resulting objects, functions. Those 
+    functions are pure programming - from within there you can do whatever you 
+    want. Obviously we like to keep them as short and understandable as possible,
+    but they will get longer.
+    * 
 
 
 
