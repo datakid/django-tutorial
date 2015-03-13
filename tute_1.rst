@@ -231,7 +231,7 @@ table, and you should think of it in relation to a page on a spreadsheet.
 
 Each author will have a first name, an other name, a last name and a date of 
 birth. Each of the name fields is made up of characters ("CharField"), has 
-a special name (u'First Name' for ease of use later, and a maximum length.
+a special name (u'First Name') for ease of use later, and a maximum length.
 
 You will note that the other field has "blank=True". This means that sometimes
 we will enter a writer that will not have an other name and that is ok. This
@@ -240,7 +240,7 @@ of the correct type.
 
 Finally you will see that dob is a DateField, a special type of field that 
 is optimised for dates and date calculations (eg: today-yesterday=1 day) and
-"null=True", which is similar to "blank=True". Yse both are necessary and no
+"null=True", which is similar to "blank=True". Yes both are necessary and no
 I wont explain the difference unless you insist. Again, it's arcane and 
 generally unnecessary.
 

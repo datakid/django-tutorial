@@ -89,25 +89,25 @@ There's a lot in those two lines of code, and we will try to answer as many of
 them as possible.
 
     * When we are programming in this fashion, we define classes of objects and
-      we can give those classes, and their resulting objects, *functions*. Those 
-      functions are pure programming - from within there you can do whatever 
+      we can give those classes, and their resulting objects, *methods*. Those 
+      methods are pure programming - from within there you can do whatever 
       you want. Obviously we like to keep them as short and understandable as
-      possible, but they will get longer. Functions are "actions" cf the 
-      model's fields.
-    * Most of the functions you write will not have underscores surrounding 
+      possible, but they will get longer. Methods are "actions" cf the model's
+      fields.
+    * Most of the methods you write will not have underscores surrounding 
       them. The reasoning is beyond the scope of this tutorial, suffice to
       say that they are "special internal functions" within Django. 
     * self? WTF is self? Ok. We have a **CLASS** that defines a **MODEL**. 
       That **MODEL** is an abstraction. When we create a new instance of that
       abstraction, we call it an **OBJECT**. Each of those objects will have
-      the ability to call any **FUNCTION** associated with it - note the 
-      indentation of the function definition being one level in from class 
-      definition. The **SELF** is how the function knows which object's 
+      the ability to call any **METHOD** associated with it - note the 
+      indentation of the method definition being one level in from class 
+      definition. The **SELF** is how the method knows which object's 
       variables to use when doing it's actions.
     * In case you missed it, the return line will return the string for the
       object as defined by "firstname lastname" or "<first> <last>". As we
       would expect.
-    * This special function is an identity reference on an object and is very
+    * This special method is an identity reference on an object and is very
       very useful, as we will see later. Don't worry, I'll point it out when it
       happens.
 
@@ -120,7 +120,7 @@ them as possible.
 
           The Object is each line below the heading (the data)
 
-          The Functions are the columns at the end of the Class Fields that reference
+          The Methods are the columns at the end of the Class Fields that reference
           other fields
 
           The Self is the equivalent of referencing something in the same line in a 
@@ -148,10 +148,10 @@ I'll leave the first problem as an exercise for the reader.
 For the second problem, there are a couple of solutions, which can be done
 individually *or* collectively. Let's do them all.
 
-Create a new function
----------------------
+Create a new method
+-------------------
 
-Let's make this dead easy and just create a new function that returns "<last>, 
+Let's make this dead easy and just create a new method that returns "<last>, 
 <first>" instead of "<first> <last>".
 
 ::
@@ -201,9 +201,9 @@ as well.
             return '%s, %s' % (self.last, self.first) 
 
 
-Note that the ordering of the functions and the Meta class don't matter, only 
+Note that the ordering of the methods and the Meta class don't matter, only 
 the indentation does. Traditionally we keep them ordered for readability, and 
-the order I choose is: Meta, __special_functions__, normal_functions with the 
+the order I choose is: Meta, __special_methods__, normal_methods with the 
 last two being alphabetically ordered internally.
 
 Now that we have two solutions in place, let's add some extra authors so that
@@ -227,5 +227,36 @@ Expanding our visible Information
 There's not a lot of information on that Author list page, so let's learn how 
 to put more information onto it for better eyeballing. At the same time, we'll
 be able to see how the new function is working.
+
+Let's jump back into *texts/admin.py* and make some changes.
+
+::
+
+    from django.contrib import admin
+    from texts.models import Author, Translator, SourceText, TargetText
+    
+    class AuthorAdmin(admin.ModelAdmin):
+        list_display = ['__unicode__', 'surname_first', 'dob']
+    
+    admin.site.register(Author, AuthorAdmin)
+    admin.site.register(Translator)
+    admin.site.register(SourceText)
+    admin.site.register(TargetText)
+
+
+As you can see, we've added a new class - AuthorAdmin - which is based on 
+Django's ModelAdmin class. We've added a couple of extra fields to the list
+that are available, and we have "registered" this with the admin interface.
+
+How does it look?
+
+.. image:: imgs/author_list_4.png
+
+Perfect. How great is that - our function has worked, and we can see that our 
+field 'dob' has been rendered as 'Date of Birth' rather than dob. This is good,
+we talked about it when we first started building the Author model in tute 1.
+
+
+
 
 
