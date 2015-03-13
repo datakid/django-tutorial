@@ -114,24 +114,24 @@ them as possible.
 
 .. todo:: Is it worth making the analogy to spreadsheets?
 
-    The Model is the spreadsheet page
+          The Model is the spreadsheet page
 
-    The Class is the headings in row 1
+          The Class is the headings in row 1
 
-    The Object is each line below the heading (the data)
+          The Object is each line below the heading (the data)
 
-    The Functions are the columns at the end of the Class Fields that reference
-    other fields
+          The Functions are the columns at the end of the Class Fields that reference
+          other fields
 
-    The Self is the equivalent of referencing something in the same line in a 
-    spreadsheet function - ie the reference to A2 and B2 in col C
+          The Self is the equivalent of referencing something in the same line in a 
+          spreadsheet function - ie the reference to A2 and B2 in col C
 
-    ===== ========= ======== ===================
-    index column A  column B column C
-    ===== ========= ======== ===================
-       1  **First** **Last** **NAME**
-       2  Lachlan   Simpson  =STRCAT(A2, B2)
-    ===== ========= ======== ===================
+          ===== ========= ======== ===================
+          index column A  column B column C
+          ===== ========= ======== ===================
+             1  **First** **Last** **NAME**
+             2  Lachlan   Simpson  =STRCAT(A2, B2)
+          ===== ========= ======== ===================
  
 
 Ok, now when we refresh the Author list page, we see named objects. That's much
