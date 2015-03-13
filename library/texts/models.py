@@ -4,10 +4,7 @@
     authors, translators
 """
 
-
 from django.db import models
-
-# Create your models here.
 
 class Author(models.Model):
     """ The underlying model for writers """
@@ -15,6 +12,18 @@ class Author(models.Model):
     other = models.CharField(u'Other Names', max_length=30, blank=True)
     last = models.CharField(u'Last Name', max_length=30)
     dob = models.DateField(u'Date of Birth', blank=True, null=True)
+
+    class Meta:
+        ordering = ['last', 'first']
+        # ordering = ['-last', '-first'] would order reverse alphabetically 
+        # ordering = ['last', 'first', 'dob'] would order alpha, then by DOB
+
+    def __unicode__(self):
+        return '%s %s' % (self.first, self.last)
+    
+    def surname_first(self):
+        return '%s, %s' % (self.last, self.first) 
+
 
 LANGUAGE_CHOICES = (
   (u'it', u'Italian'),
