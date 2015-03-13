@@ -205,3 +205,27 @@ Note that the ordering of the functions and the Meta class don't matter, only
 the indentation does. Traditionally we keep them ordered for readability, and 
 the order I choose is: Meta, __special_functions__, normal_functions with the 
 last two being alphabetically ordered internally.
+
+Now that we have two solutions in place, let's add some extra authors so that
+we can see them working when we implement the change.
+
+.. image:: imgs/author_list_2.png
+
+As you can see, I've added a bunch of extra authors. The only sorting that 
+seems to be happening is in the order that they were entered. Now I'll 
+uncomment my Author's Meta class in models.py and it will turn out exactly as
+expected.
+
+.. image:: imgs/author_list_3.png
+
+Excellent. 
+
+
+Expanding our visible Information
+---------------------------------
+
+There's not a lot of information on that Author list page, so let's learn how 
+to put more information onto it for better eyeballing. At the same time, we'll
+be able to see how the new function is working.
+
+
