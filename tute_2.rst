@@ -111,10 +111,14 @@ them as possible.
 TODO: Is it worth making the analogy to spreadsheets?
 
 The Model is the spreadsheet page
+
 The Class is the headings in row 1
+
 The Object is each line below the heading (the data)
+
 The Functions are the columns at the end of the Class Fields that reference other fields
-The Self is the equivalent of referencing something in the same line in a spreadsheet function:
+
+The Self is the equivalent of referencing something in the same line in a spreadsheet function - ie the reference to A2 and B2 in col C
 
 ===== ========= ======== ===================
 index column A  column B column C
