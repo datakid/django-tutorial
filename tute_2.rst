@@ -121,6 +121,7 @@ index column A  column B column C
 ===== ========= ======== ===================
    1  **First** **Last** **NAME**
    2  Lachlan   Simpson  =STRCAT(A2, B2)
+===== ========= ======== ===================
  
 
 
