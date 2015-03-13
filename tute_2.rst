@@ -255,8 +255,81 @@ How does it look?
 Perfect. How great is that - our function has worked, and we can see that our 
 field 'dob' has been rendered as 'Date of Birth' rather than dob. This is good,
 we talked about it when we first started building the Author model in tute 1.
+(and you would have seen it in in the "Add Author" interface as well)
+
+----------------------
+Dammit, forgot a field
+----------------------
+
+So we've now created some models and added them to our admin interface. It's 
+looking good.
+
+But we realised that we wanted to record some more information on the models we
+have. 
+
+Now we will make two changes to the models that will help us understand the 
+relationship between *texts/models.py* and the underlying database, and also
+how we might start getting some juicy information out of the information we 
+have.
 
 
+Adding a new field to a model
+-----------------------------
 
+After entering a couple of books, we decide that we want to record the colour
+of the cover of each SourceText. Let's get in there and add it to the 
+SourceText model.
 
+::
+
+    class SourceText(Book):
+        """ the source text (presumed but not necessarily english) """
+        language = models.CharField(u'language', max_length=20, choices=LANGUAGE_CHOICES, default=u'en')
+        authors = models.ManyToManyField(Author, verbose_name=u'List of Authors')
+        cover_colour = models.CharField('Colour', max_length=10, blank=True)
+
+Great. We reload the server, but we don't see the cover_colour because the 
+underlying database tables don't know about it yet. We need to perform a 
+migration. 
+
+First, we make the migration.
+
+:: 
+
+    (venv)library$ python manage.py makemigrations
+    Migrations for 'texts':
+      0002_auto_20150313_0456.py:
+        - Change Meta options on author
+        - Change Meta options on translator
+        - Add field cover_colour to sourcetext
+    
+
+Then we apply the migration.
+
+::    
+
+    (venv)library$ python manage.py migrate
+    Operations to perform:
+      Synchronize unmigrated apps: staticfiles, messages
+      Apply all migrations: admin, texts, contenttypes, auth, sessions
+    Synchronizing apps without migrations:
+      Creating tables...
+        Running deferred SQL...
+      Installing custom SQL...
+    Running migrations:
+      Rendering model states... DONE
+      Applying texts.0002_auto_20150313_0456... OK
+
+Most of that looks like typical command line guff, but there aren't any errors,
+so let's presume it worked and go check.
+
+First, we'll add the cover_colour to the *texts/admin.py* so that we can see it, then we
+will add it to the book we have.
+
+::
+
+   class SourceTextAdmin(admin.ModelAdmin):
+        list_display = ['title', 'publisher', 'place', 'cover_colour']
+
+And now we restart the server and check the page. 
 
