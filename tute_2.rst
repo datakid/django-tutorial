@@ -92,11 +92,21 @@ them as possible.
       we can give those classes, and their resulting objects, *functions*. Those 
       functions are pure programming - from within there you can do whatever 
       you want. Obviously we like to keep them as short and understandable as
-      possible, but they will get longer.
+      possible, but they will get longer. Functions are "actions" cf the 
+      model's fields.
     * Most of the functions you write will not have underscores surrounding 
       them. The reasoning is beyond the scope of this tutorial, suffice to
       say that they are "special internal functions" within Django. 
-    * 
+    * In case you missed it, the return line will return the string for the
+      object as defined by "firstname lastname" or "<first> <last>". As we
+      would expect.
+    * self? WTF is self? Ok. We have a **CLASS** that defines a **MODEL**. 
+      That **MODEL** is an abstraction. When we create a new instance of that
+      abstraction, we call it an **OBJECT**. Each of those objects will have
+      the ability to call any **FUNCTION** associated with it - note the 
+      indentation of the function definition being one level in from class 
+      definition. The **SELF** is how the function knows which object's 
+      variables to use when doing it's actions.
 
 
 
