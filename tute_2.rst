@@ -89,10 +89,10 @@ There's a lot in those two lines of code, and we will try to answer as many of
 them as possible.
 
     * When we are programming in this fashion, we define classes of objects and we 
-    can give those classes, and their resulting objects, functions. Those 
-    functions are pure programming - from within there you can do whatever you 
-    want. Obviously we like to keep them as short and understandable as possible,
-    but they will get longer.
+      can give those classes, and their resulting objects, functions. Those 
+      functions are pure programming - from within there you can do whatever you 
+      want. Obviously we like to keep them as short and understandable as possible,
+      but they will get longer.
     * 
 
 
