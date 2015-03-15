@@ -12,6 +12,7 @@ LANGUAGE_CHOICES = (
   (u'es', u'Spanish'),
   (u'zh-cn', u'Simplified Chinese'),
   (u'zh-tw', u'Traditional Chinese'),
+  (u'fr', u'French'),
   (u'en', u'English'),
 )
 
@@ -79,7 +80,6 @@ class SourceText(Book):
     language = models.CharField(u'language', max_length=20, choices=LANGUAGE_CHOICES, default=u'en')
     authors = models.ManyToManyField(Author, verbose_name=u'List of Authors')
     cover_colour = models.CharField('Colour', max_length=10, blank=True)
-    cover_colour1 = models.CharField('Colour', max_length=10, blank=True)
 
 class TargetText(Book):
     """ the translated text """

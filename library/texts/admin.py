@@ -6,6 +6,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 class TranslatorAdmin(admin.ModelAdmin):
     list_display = ['__unicode__', 'original_name', 'language']
+    list_filter = ['language']
 
 class SourceTextAdmin(admin.ModelAdmin):
     list_display = ['title', 'publisher', 'place', 'cover_colour']

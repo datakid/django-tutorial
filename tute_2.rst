@@ -292,7 +292,7 @@ Great. We reload the server, but we don't see the cover_colour because the
 underlying database tables don't know about it yet. We need to perform a 
 migration. 
 
-First, we make the migration.
+First, make the migration.
 
 :: 
 
@@ -321,10 +321,11 @@ Then we apply the migration.
       Applying texts.0002_auto_20150313_0456... OK
 
 Most of that looks like typical command line guff, but there aren't any errors,
-so let's presume it worked and go check.
+so let's presume it worked and go check. You should be able to add a colour to 
+a SourceText in add or edit mode.
 
-First, we'll add the cover_colour to the *texts/admin.py* so that we can see it, then we
-will add it to the book we have.
+To see them in the list of SourceTexts, we'll add the cover_colour to the 
+*texts/admin.py*.
 
 ::
 
@@ -333,3 +334,67 @@ will add it to the book we have.
 
 And now we restart the server and check the page. 
 
+.. image:: imgs/source_list_with_colour.png
+
+Boom. Easy.
+
+
+Adding a new field to the Admin interface
+-----------------------------------------
+
+Right, that's nice, but it's also banal. Can we do something more complex - 
+like count the number of characters in an Author's name?
+
+Of course we can. We can represent almost anything you can represent in python.
+Open *texts/models.py* and add this function to the Author model.
+ 
+::
+    
+    def name_length(self):
+        return len(self.first) + len(self.last)
+
+Then we make the minor change to *texts/admin.py*
+
+::
+
+   class AuthorAdmin(admin.ModelAdmin):
+        list_display = ['__unicode__', 'surname_first', 'dob', 'name_length']
+
+
+.. images:: imgs/author_list_name_length.png
+
+
+Adding a filter
+---------------
+
+Suppose we have a really large data set and would like to be able to eyeball
+some parts of the data independantly?
+
+Easy. Open *texts/admin.py* and add
+
+::
+
+    class TranslatorAdmin(admin.ModelAdmin):
+        list_display = ['__unicode__', 'original_name', 'language']
+        list_filter = ['language']
+
+Now if we look at our translators list:
+
+.. images:: imgs/translator_list_with_filter_1.png
+
+And then we select a filter:
+
+.. images:: imgs/translator_list_with_filter_2.png
+
+.. note:: You can see which filter has been selected three ways: the results 
+          given, the filter on the right hand side, and if you look in the URL
+          you will see it represented as well. You can hand craft URLs if you 
+          like to but Django probably has a function for thay
+
+
+End Tutorial 2. 
+
+As you can see, Django is quite powerful out of the box. In tutorial three we 
+will see some more power functions available to us.
+
+  
