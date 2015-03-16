@@ -361,7 +361,7 @@ Then we make the minor change to *texts/admin.py*
         list_display = ['__unicode__', 'surname_first', 'dob', 'name_length']
 
 
-.. images:: imgs/author_list_name_length.png
+.. image:: imgs/author_list_name_length.png
 
 
 Adding a filter
@@ -380,11 +380,11 @@ Easy. Open *texts/admin.py* and add
 
 Now if we look at our translators list:
 
-.. images:: imgs/translator_list_with_filter_1.png
+.. image:: imgs/translator_list_with_filter_1.png
 
 And then we select a filter:
 
-.. images:: imgs/translator_list_with_filter_2.png
+.. image:: imgs/translator_list_with_filter_2.png
 
 .. note:: You can see which filter has been selected three ways: the results 
           given, the filter on the right hand side, and if you look in the URL
