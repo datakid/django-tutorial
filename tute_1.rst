@@ -292,7 +292,7 @@ Let's create a book model:
 
     class Book(models.Model):
       """ the abstract book model """
-      title = models.CharField(u'title'), max_length=100)
+      title = models.CharField(u'title', max_length=100)
       publisher = models.CharField(u'publisher', max_length=40)
       date = models.DateField(blank=True, null=True)
       place = models.CharField(u'place', max_length=20)
