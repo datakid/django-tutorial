@@ -441,10 +441,6 @@ Now that we have saved our migration data, lets apply the migration:
     Operations to perform:
       Apply all migrations: admin, texts, contenttypes, auth, sessions
     Running migrations:
-      Applying contenttypes.0001_initial... OK
-      Applying auth.0001_initial... OK
-      Applying admin.0001_initial... OK
-      Applying sessions.0001_initial... OK
       Applying texts.0001_initial... OK
 
 
