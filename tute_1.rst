@@ -248,7 +248,7 @@ So we have a writer. Let's make a translator:
 
 ::
 
-    LANGUAGE_CHOICES = (
+    LANGUAGE_CHOICES = {
       ('it', 'Italian'),
       ('ja', 'Japanese'),
       ('es', 'Spanish'),
@@ -322,7 +322,7 @@ models:
 
     class SourceText(Book):
       """ the source text (presumed but not necessarily english) """
-      language = models.CharField(u'language', max_length=20, choices=LANGUAGES, default=u'en')
+      language = models.CharField(u'language', max_length=20, choices=LANGUAGE_CHOICES, default=u'en')
       authors = models.ManyToManyField(Author, verbose_name=u'List of Authors')
 
 Note two important points here. When we define SourceText, we make it a copy of
@@ -364,7 +364,7 @@ Book object, only SourceText objects. Let's see why:
 
     class TargetText(Book):
         """ the translated text """
-        language = models.CharField(u'language', max_length=20, choices=LANGUAGES)
+        language = models.CharField(u'language', max_length=20, choices=LANGUAGE_CHOICES)
         source_text = models.ForeignKey(SourceText, related_name='source',
                         verbose_name='Source Text')
         translators = models.ManyToManyField(Translator, verbose_name='List of Translators')
