@@ -248,14 +248,14 @@ So we have a writer. Let's make a translator:
 
 ::
 
-    LANGUAGE_CHOICES = {
+    LANGUAGE_CHOICES = (
       ('it', 'Italian'),
       ('ja', 'Japanese'),
       ('es', 'Spanish'),
       ('zh-cn', 'Simplified Chinese'),
       ('zh-tw', 'Traditional Chinese'),
       ('en', 'English'),
-    }
+    )
 
     class Translator(models.Model):
         """ The translators """
