@@ -296,7 +296,7 @@ Let's create a book model:
       publisher = models.CharField(u'publisher', max_length=40)
       date = models.DateField(blank=True, null=True)
       place = models.CharField(u'place', max_length=20)
-      pages = models.CharField(u'pages', blank=True)
+      pages = models.CharField(u'pages', max_length=5, blank=True)
 
 TODO - Lachlan, look into the DateField and see how to enter the year only, as 
 that is a sufficient level of precision for year of publish.
