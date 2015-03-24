@@ -310,14 +310,8 @@ Then we apply the migration.
 
     (venv)library$ python manage.py migrate
     Operations to perform:
-      Synchronize unmigrated apps: staticfiles, messages
       Apply all migrations: admin, texts, contenttypes, auth, sessions
-    Synchronizing apps without migrations:
-      Creating tables...
-        Running deferred SQL...
-      Installing custom SQL...
     Running migrations:
-      Rendering model states... DONE
       Applying texts.0002_auto_20150313_0456... OK
 
 Most of that looks like typical command line guff, but there aren't any errors,

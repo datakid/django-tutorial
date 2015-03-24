@@ -255,7 +255,7 @@ So we have a writer. Let's make a translator:
       ('zh-cn', 'Simplified Chinese'),
       ('zh-tw', 'Traditional Chinese'),
       ('en', 'English'),
-    }
+    )
 
     class Translator(models.Model):
         """ The translators """
@@ -292,11 +292,11 @@ Let's create a book model:
 
     class Book(models.Model):
       """ the abstract book model """
-      title = models.CharField(u'title'), max_length=100)
+      title = models.CharField(u'title', max_length=100)
       publisher = models.CharField(u'publisher', max_length=40)
       date = models.DateField(blank=True, null=True)
       place = models.CharField(u'place', max_length=20)
-      pages = models.CharField(u'pages', blank=True)
+      pages = models.CharField(u'pages', max_length=5, blank=True)
 
 TODO - Lachlan, look into the DateField and see how to enter the year only, as 
 that is a sufficient level of precision for year of publish.
@@ -322,7 +322,7 @@ models:
 
     class SourceText(Book):
       """ the source text (presumed but not necessarily english) """
-      language = models.CharField(u'language', max_length=20, choices=LANGUAGES, default=u'en')
+      language = models.CharField(u'language', max_length=20, choices=LANGUAGE_CHOICES, default=u'en')
       authors = models.ManyToManyField(Author, verbose_name=u'List of Authors')
 
 Note two important points here. When we define SourceText, we make it a copy of
@@ -364,7 +364,7 @@ Book object, only SourceText objects. Let's see why:
 
     class TargetText(Book):
         """ the translated text """
-        language = models.CharField(u'language', max_length=20, choices=LANGUAGES)
+        language = models.CharField(u'language', max_length=20, choices=LANGUAGE_CHOICES)
         source_text = models.ForeignKey(SourceText, related_name='source',
                         verbose_name='Source Text')
         translators = models.ManyToManyField(Translator, verbose_name='List of Translators')
@@ -441,10 +441,6 @@ Now that we have saved our migration data, lets apply the migration:
     Operations to perform:
       Apply all migrations: admin, texts, contenttypes, auth, sessions
     Running migrations:
-      Applying contenttypes.0001_initial... OK
-      Applying auth.0001_initial... OK
-      Applying admin.0001_initial... OK
-      Applying sessions.0001_initial... OK
       Applying texts.0001_initial... OK
 
 
