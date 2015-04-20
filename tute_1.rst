@@ -337,19 +337,19 @@ is no particular reason to attach authors to books, rather than books to
 authors except it seems more intuitively correct. There is no absolute 
 correct though, and the changes needed would be minor to flip it.
 
-
 Because we have created the SourceText as an extension of the Book model, 
-we need to add a little to the Book model:
+we need to add a little to the Book model. So let's go back to Book and add
+a Meta class:
 
 ::
 
     class Book(models.Model):
         """ the abstract book model """
-        title = models.CharField(u'title'), max_length=100)
+        title = models.CharField(u'title', max_length=100)
         publisher = models.CharField(u'publisher', max_length=40)
         date = models.DateField(blank=True, null=True)
         place = models.CharField(u'place', max_length=20)
-        pages = models.CharField(u'pages', blank=True)
+        pages = models.CharField(u'pages', max_length=5, blank=True)
 
         class Meta: 
             """ Some meta data """ 
