@@ -357,7 +357,9 @@ a Meta class:
             abstract = True
 
 Here you can see I'm telling Django that when you list Books, I want them 
-listed alphabetically. Abstract means that there will never actually be a 
+listed alphabetically by title. It's important to note that capitalisation is 
+important: ordering=["Title"] wil not work because Title is not an attribute
+on Book - title is though. Abstract means that there will never actually be a 
 Book object, only SourceText objects. Let's see why:
 
 ::
