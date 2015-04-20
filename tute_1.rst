@@ -170,7 +170,7 @@ If we take a look at what was created, we can see some new files:
     │       └── views.py
 
 We now have a directory called texts, and within that a number of files.
-Straight up I'll say teh __init__.py, the migrations directory and the 
+Straight up I'll say the __init__.py, the migrations directory and the 
 tests.py we will not be using today and are somewhat esoteric anyway. Any
 Djangoistas that are reading this will kick my arse for saying don't worry 
 about tests, but seriously, don't worry about tests for another year.
@@ -212,7 +212,7 @@ The first five lines are a comment that tell us what is in this file and what
 we expect it to do. This is merely good practice rather than necessary.
 
 The sixth line tells us (and the software) we will be using the Django model 
-system.
+system. Most likely that line will already be in the models.py
 
 Let's build an initial model for our data. We put this in the models.py file, 
 directly below the import command:
